@@ -1,3 +1,24 @@
-<img [src]="image" />
-<img [src]="svg" />
-<button (click)="openSnackBar()">Settings</button>
+<div class="container">
+  <div class="image-container">
+
+    <img [ngClass]="{'visible': svg == ''}" class="original" [src]="image" />
+    <img [ngClass]="{'visible': svg != ''}" class="stencilised" [src]="svg" />
+
+    <canvas #converter width="500" height="500"></canvas>
+
+  </div>
+
+  <div class="buttons-container">
+    <button class="settings" disabled="{{loading || settings? true : false }}" (click)="openSettings()" md-button aria-label="Settings">
+      <md-icon svgIcon="settings"></md-icon>
+    </button>
+    <button class="download" disabled="{{loading || settings? true : false }}" [ngClass]="{'not-downloable': !downloadable}" (click)="download()" md-button aria-label="Download">
+      <md-icon svgIcon="download"></md-icon>
+    </button>
+  </div>
+
+  <div class="cssload-container" [ngClass]="{'visible': loader}">
+    <div class="cssload-speeding-wheel"></div>
+  </div>
+
+</div>

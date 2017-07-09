@@ -1,2 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Global classes, next I'll use sass... */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.yellow-color {
+  color: #ffd426;
+}
+.blue-color {
+  color: #26baff;
+}
+.grey-color {
+  color: #b9bbbc;
+}
+
+/* snackbars */
+snack-bar-container.stencilizer {
+  background-color: #ffd426;
+}
+snack-bar-container.stencilizer simple-snack-bar {
+  color: #332;
+}
+
+/* sliders */
+.mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+  background-color: #26baff;
+}
+
+
+/* CSS Loader */
+.loader {
+  width: 100%;
+  height: 100%;
+
+  /*  If flex wont work, loader would simply align center top...  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cssload-container {
+	width: 100%;
+	height: 49px;
+	text-align: center;
+}
+
+.cssload-speeding-wheel {
+	width: 49px;
+	height: 49px;
+	margin: 0 auto;
+	border: 3px solid rgb(38,186,255);
+	border-radius: 50%;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	animation: cssload-spin 575ms infinite linear;
+		-o-animation: cssload-spin 575ms infinite linear;
+		-ms-animation: cssload-spin 575ms infinite linear;
+		-webkit-animation: cssload-spin 575ms infinite linear;
+		-moz-animation: cssload-spin 575ms infinite linear;
+}
+
+@keyframes cssload-spin {
+	100%{ transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+	100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+	100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+

@@ -1,3 +1,16 @@
-<a class="" *ngFor="let image of images">
-  <img src="{{image}}" (click)="select(image)" />
-</a>
+<div class="container">
+  <div class="images">
+    <button md-button *ngFor="let image of images">
+      <img src="{{image}}" (click)="select(image)" />
+    </button>
+  </div>
+  <div class="actions">
+    <button [ngClass]="{'not-enabled': !fileReaderEnabled}" md-button (click)="addImage()" aria-label="Add Image">
+      <md-icon class="blue-fill-color" svgIcon="add"></md-icon>
+      <input class="file" type="file" (change)="fileAdded($event)" accept="image/x-png,image/gif,image/jpeg" />
+    </button>
+    <button [ngClass]="{'not-enabled': !webcamEnabled}" md-button (click)="openWebcam()" aria-label="Stream from Webcam">
+      <md-icon class="blue-fill-color" svgIcon="webcam"></md-icon>
+    </button>
+  </div>
+</div>

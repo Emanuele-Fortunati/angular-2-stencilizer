@@ -1,3 +1,79 @@
-img {
-  max-width: 500px;
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 235px;
+  overflow: hidden;
+}
+@media screen and (min-height: 360px) {
+  .container {
+    max-width: 275px;
+  }
+}
+@media screen and (min-height: 410px) {
+  .container {
+    max-width: 325px;
+  }
+}
+@media screen and (min-height: 640px) {
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-height: 1025px), screen and (min-width: 769px) and (min-height: 1024px) {
+  .container {
+    max-width: 1000px;
+    width: 150%;
+  }
+}
+
+.container .cssload-container {
+  position: absolute;
+  top: 50%;
+  display: none;
+}
+
+.image-container img {
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.image-container img.svg {
+  margin-top: -500px;
+}
+
+.image-container canvas {
+  display: none;
+}
+
+.image-container .cssload-container {
+  margin-top: -50%;
+}
+
+.buttons-container {
+  float: right;
+/*   margin-top: -100px; */
+  margin-top: -40px;
+}
+.buttons-container button {
+/*   display: block; */
+  min-width: 0;
+  width: 40px;
+  padding: 0;
+}
+.buttons-container button md-icon {
+  width: 24px;
+  height: 40px;
+}
+
+.not-downloable {
+  opacity: 0.3;
+}
+
+
+
+.container *.visible {
+  display: block;
 }

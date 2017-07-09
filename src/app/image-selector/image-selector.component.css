@@ -1,9 +1,42 @@
-a {
+.container {
+  text-align: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 410px) {
+  .container div {
+    display: inline;
+  }
+}
+
+button {
   cursor: pointer;
-  border: 1px solid #000;
-  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border: 2px solid #b9bbbc;
+  margin: 5px;
+  border-radius: 35px;
 }
 
 img {
-  max-width: 150px;
+  max-height: 35px;
+/*   transform: rotate(1.4) */
+}
+
+button.mat-button.not-enabled {
+  opacity: 0.3;
+}
+
+.file {
+  cursor: pointer;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 82px;
+  height: 59px;
+  opacity: 0;
+}
+
+canvas {
+  display: none;
 }

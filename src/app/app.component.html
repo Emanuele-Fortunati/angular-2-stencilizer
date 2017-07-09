@@ -1,3 +1,16 @@
-<stencilizer-image-selector [images]="['assets/1.jpg', 'assets/2.jpg']" (onSelected)="onSelected($event)"></stencilizer-image-selector>
+<div class="container">
+  <div class="image">
+    <stencilizer-image-stencilizer
+      [image]=imageSrc
+      [notDownloadable]="['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg']"
+      notDownloadableMessage="Hey! You can't download me! Try with another image!">
+    </stencilizer-image-stencilizer>
+  </div>
 
-<stencilizer-image-stencilizer [image]=imageSrc></stencilizer-image-stencilizer>
+
+   <div class="image-selector">
+     <stencilizer-image-selector [images]="['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg']" (onSelected)="onSelected($event)"></stencilizer-image-selector>
+   </div>
+
+
+</div>

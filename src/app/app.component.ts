@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stencilizer';
-  imageSrc = '';
+  imageSrc: string = 'assets/young-emanuele-fortunati.jpg';
 
   onSelected(imageSrc: string) {
     this.imageSrc = imageSrc;
