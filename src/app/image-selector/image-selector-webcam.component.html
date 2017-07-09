@@ -1,5 +1,8 @@
-<div #webcam id="webcam">
+<div #webcam id="webcam" [hidden]="nossl">
   <canvas></canvas>
+</div>
+<div [hidden]="!nossl">
+  Unfortunately this feature only work over HTTPS, or on localhost. If you want to try it, feel free to <a href="https://github.com/Emanuele-Fortunati/angular-2-stencilizer" target="_blank">download the source code</a>. Sorry about that.
 </div>
 <div class="buttons">
   <button md-button (click)="snapshot()" aria-label="Take a snapshot">

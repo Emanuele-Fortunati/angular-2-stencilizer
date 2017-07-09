@@ -125,7 +125,7 @@ export class ImageSelectorComponent implements OnInit {
 
       let img = new Image();
       img.onload = () => {
-        canvas.getContext('2d').drawImage(img, 0, 0);
+        canvas.getContext('2d').drawImage(img, 0, 0, 500, 500);
         this.select(canvas.toDataURL('image/png'), 'add');
       };
       img.src = file.srcElement.result;
@@ -138,16 +138,20 @@ export class ImageSelectorComponent implements OnInit {
   }
 
   openWebcam() {
-    let dialogRef = this.dialog.open(ImageSelectorWebcamComponent, {
-      hasBackdrop: true
-    });
-
-    // probably isnt the cleanest way....
-    dialogRef.componentInstance
-      .onSnapshot
-      .subscribe((image) => {
-        this.select(image, 'webcam');
+    if(!this.webcamEnabled) {
+      this.error();
+    } else {
+      let dialogRef = this.dialog.open(ImageSelectorWebcamComponent, {
+        hasBackdrop: true
       });
+
+      // probably isnt the cleanest way....
+      dialogRef.componentInstance
+        .onSnapshot
+        .subscribe((image) => {
+          this.select(image, 'webcam');
+        });
+    }
   }
 
 }
@@ -174,19 +178,25 @@ export class ImageSelectorWebcamComponent implements OnInit {
   public onSnapshot = new EventEmitter<string>();
 
   private stream: any;
+  private nossl: boolean = true;
 
   ngOnInit() {
 
-    // using the polyfil as one day I wish to add the flash fallback...
-    getUserMedia({
-      video: true,
-      audio: false,
-      width: 320,
-      height: 240,
-      el: 'webcam',
-    }, stream => {
-        this.startVideo(stream);
-    }, err => console.error(err));
+    if(location.hostname == 'localhost' || location.protocol == 'https') {
+      this.nossl = false;
+
+      // using the polyfil as one day I wish to add the flash fallback...
+      getUserMedia({
+        video: true,
+        audio: false,
+        width: 320,
+        height: 240,
+        el: 'webcam',
+      }, stream => {
+          this.startVideo(stream);
+      }, err => console.error(err));
+
+    }
 
 
     this.dialogRef.afterClosed().subscribe(() => {
