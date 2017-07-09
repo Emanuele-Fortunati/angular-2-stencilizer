@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Rx';
 import { MdSnackBar, MdDialog, MdDialogRef, MdIconRegistry } from '@angular/material';
 import { getUserMedia } from 'getusermedia-js';
 
@@ -11,8 +12,11 @@ import { getUserMedia } from 'getusermedia-js';
 export class ImageSelectorComponent implements OnInit {
 
   @Input() images: Array<string>;
+  @Input() selected: any = 0;
 
-  @Output() onSelected = new EventEmitter<string>();
+  @Output() onSelected = new EventEmitter<any>();
+
+  @ViewChild('fileOpener') fileElem:ElementRef;
 
 
   private fileReaderEnabled: boolean;
@@ -43,7 +47,53 @@ export class ImageSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onSelected.emit(this.images[0]);
+    this.onSelected.emit({ image: this.images[0], selected: this.selected });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    if(changes.selected) {
+      let timer = Observable.timer(150);
+
+      switch(changes.selected.currentValue) {
+        case 'open-add':
+
+          timer.subscribe(t=> {
+            if(!this.fileReaderEnabled) {
+              this.error();
+              this.selected = 'cant-add';
+            } else {
+              this.selected = 1;
+              this.fileElem.nativeElement.click();
+            }
+
+            this.onSelected.emit({ image: null, selected: this.selected });
+          });
+          break;
+
+        case 'open-webcam':
+
+          timer.subscribe(t=> {
+            if(!this.webcamEnabled) {
+              this.error();
+              this.selected = 'cant-webcam';
+            } else {
+              if(this.fileReaderEnabled) {
+                this.selected = 'add';
+              } else {
+                this.selected = 1;
+              }
+
+              this.openWebcam();
+
+            }
+
+            this.onSelected.emit({ image: null, selected: this.selected });
+          });
+          break;
+      }
+    }
+
   }
 
   private error() {
@@ -53,8 +103,9 @@ export class ImageSelectorComponent implements OnInit {
     });
   }
 
-  select(imageSrc: string) {
-    this.onSelected.emit(imageSrc);
+  select(imageSrc: string, index: any) {
+    this.selected = index;
+    this.onSelected.emit({ image: imageSrc, selected: this.selected });
   }
 
   addImage() {
@@ -66,7 +117,19 @@ export class ImageSelectorComponent implements OnInit {
   fileAdded(event) {
 
     this.fileReader.onload = (file) => {
-      this.select(file.srcElement.result);
+
+      // pass it into a canvas to make sure it is 500x500 pixels
+      let canvas = document.createElement('canvas');
+      canvas.width = 500;
+      canvas.height = 500;
+
+      let img = new Image();
+      img.onload = () => {
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        this.select(canvas.toDataURL('image/png'), 'add');
+      };
+      img.src = file.srcElement.result;
+
     }
 
     // Read in the image file as a data URL.
@@ -83,7 +146,7 @@ export class ImageSelectorComponent implements OnInit {
     dialogRef.componentInstance
       .onSnapshot
       .subscribe((image) => {
-        this.select(image);
+        this.select(image, 'webcam');
       });
   }
 
@@ -102,7 +165,11 @@ export class ImageSelectorWebcamComponent implements OnInit {
 
   @ViewChild('webcam') webcam:ElementRef;
 
-  constructor(private rd: Renderer2, public dialogRef: MdDialogRef<ImageSelectorWebcamComponent>) { }
+  constructor(private rd: Renderer2, public dialogRef: MdDialogRef<ImageSelectorWebcamComponent>, mdIconRegistry: MdIconRegistry, private sanitizer:DomSanitizer) {
+    mdIconRegistry
+      .addSvgIcon('camera', sanitizer.bypassSecurityTrustResourceUrl('assets/camera_blue.svg'))
+      .addSvgIcon('clear', sanitizer.bypassSecurityTrustResourceUrl('assets/clear_blue.svg'));
+  }
 
   public onSnapshot = new EventEmitter<string>();
 
@@ -140,11 +207,15 @@ export class ImageSelectorWebcamComponent implements OnInit {
   snapshot() {
     var video = this.webcam.nativeElement.querySelector('video');
     var canvas = this.webcam.nativeElement.querySelector('canvas');
-    canvas.width = video.width;
-    canvas.height = video.height;
-    canvas.getContext('2d').drawImage(video, 0, 0, video.width, video.height);
+    canvas.width = 500;
+    canvas.height = 500
+    canvas.getContext('2d').drawImage(video, 0, 0, 500, 375);
 
-    this.onSnapshot.emit(canvas.toDataURL("image/png"));
+    this.onSnapshot.emit(canvas.toDataURL('image/png'));
+    this.dialogRef.close();
+  }
+
+  close() {
     this.dialogRef.close();
   }
 

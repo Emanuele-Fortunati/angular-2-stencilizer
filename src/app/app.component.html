@@ -1,16 +1,22 @@
 <div class="container">
+    <div class="copy bs">
+     <stencilizer-dynamic-copy [selected]="selected" (onSelected)="onCopySelected($event)"></stencilizer-dynamic-copy>
+    </div>
   <div class="image">
     <stencilizer-image-stencilizer
       [image]=imageSrc
-      [notDownloadable]="['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg']"
+      [notDownloadable]="images"
       notDownloadableMessage="Hey! You can't download me! Try with another image!">
     </stencilizer-image-stencilizer>
   </div>
 
 
    <div class="image-selector">
-     <stencilizer-image-selector [images]="['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg']" (onSelected)="onSelected($event)"></stencilizer-image-selector>
+     <stencilizer-image-selector [images]="['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg']" [selected]="selected" (onSelected)="onSelected($event)"></stencilizer-image-selector>
    </div>
 
+   <div class="copy ss">
+     <stencilizer-dynamic-copy [selected]="selected" (onSelected)="onCopySelected($event)"></stencilizer-dynamic-copy>
+   </div>
 
 </div>

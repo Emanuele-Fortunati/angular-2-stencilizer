@@ -12,6 +12,7 @@ import { ImageSelectorComponent } from './image-selector/image-selector.componen
 import { ImageSelectorWebcamComponent } from './image-selector/image-selector.component';
 import { ImageStencilizerComponent } from './image-stencilizer/image-stencilizer.component';
 import { StencilizerSettingsComponent } from './image-stencilizer/image-stencilizer.component';
+import { DynamicCopyComponent } from './dynamic-copy/dynamic-copy.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StencilizerSettingsComponent } from './image-stencilizer/image-stencili
     ImageSelectorComponent,
     ImageSelectorWebcamComponent,
     ImageStencilizerComponent,
-    StencilizerSettingsComponent
+    StencilizerSettingsComponent,
+    DynamicCopyComponent
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,25 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stencilizer';
+  images: Array<string> = ['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg'];
   imageSrc: string = 'assets/young-emanuele-fortunati.jpg';
+  selected: any = 0;
 
-  onSelected(imageSrc: string) {
-    this.imageSrc = imageSrc;
+  onSelected(data: any) {
+    if(data.image != null) {
+      this.imageSrc = data.image;
+    }
+
+    this.selected = data.selected;
   }
+
+  onCopySelected(selected: any) {
+
+    this.selected = selected;
+
+    if(this.images[this.selected]) {
+      this.imageSrc = this.images[this.selected];
+    }
+  }
+
 }

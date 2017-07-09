@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div *ngIf="selected == 0">
+    Hi there, I'm Emanuele Fortunati, Front End Developer.
+    <br />
+    This is the young me, want to see the <a (click)="select(1)">actual me</a>?
+  </div>
+
+  <div *ngIf="selected == 1 || selected == 'open-add'">
+    ...and here is the actual me: nice to meet you!
+    <br />
+    I can't see you, why you don't show me <a (click)="select('open-add')">how you look like</a>?
+  </div>
+
+  <div *ngIf="selected == 'cant-add' || selected == 'open-webcam'">
+    Looks like you can't upload a picture...
+    <br />
+    Why don't you try <a (click)="select('open-webcam')">takin one now</a>?
+  </div>
+
+  <div *ngIf="selected == 'add' || selected == 'open-webcam'">
+    Uh! Is this really you?
+    <br />
+    Why don't you show me a more <a (click)="select('open-webcam')">recent shot</a>?
+  </div>
+
+  <div *ngIf="selected == 'webcam'">
+    I guess this is really you now! Hello!
+    <br />
+    Here's the <a href="https://github.com/Emanuele-Fortunati/angular-2-stencilizer" target="_blank">the source code</a> for you then :)
+  </div>
+
+  <div *ngIf="selected == 'cant-webcam'">
+    Looks like you can't take a picture, sorry about that.
+    <br />
+    Here's the <a href="https://github.com/Emanuele-Fortunati/angular-2-stencilizer" target="_blank">the source code</a> for you then :)
+  </div>
+
+</div>

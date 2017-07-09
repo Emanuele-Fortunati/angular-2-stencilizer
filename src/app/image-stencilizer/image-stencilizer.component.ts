@@ -119,7 +119,9 @@ export class ImageStencilizerComponent implements OnInit {
 
       // create SVG
       let context = this.canvasElem.nativeElement.getContext("2d");
+
       if(image) {
+        context.clearRect(0, 0, 500, 500);
     		context.drawImage(image, 0, 0);
       }
 
@@ -154,7 +156,7 @@ export class ImageStencilizerComponent implements OnInit {
     		downloadjs(this.canvasElem.nativeElement.toDataURL('image/png', 1.0), 'stencilized.png', 'image/png');
     	}
 
-    	image.src = this.cache[this.image].rawData;
+    	image.src = this.cache[this.image + '-' + this.options.numberofcolors].rawData;
 
     }
   }

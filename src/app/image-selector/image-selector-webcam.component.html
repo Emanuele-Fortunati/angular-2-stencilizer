@@ -1,4 +1,11 @@
 <div #webcam id="webcam">
   <canvas></canvas>
 </div>
-<button md-button (click)="snapshot()">Take a snapshot</button>
+<div class="buttons">
+  <button md-button (click)="snapshot()" aria-label="Take a snapshot">
+    <md-icon svgIcon="camera"></md-icon>
+  </button>
+  <button md-button (click)="close()" aria-label="Close">
+    <md-icon svgIcon="clear"></md-icon>
+  </button>
+</div>

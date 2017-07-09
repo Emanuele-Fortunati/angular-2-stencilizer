@@ -17,6 +17,9 @@ button {
   margin: 5px;
   border-radius: 35px;
 }
+button.selected {
+  border-color: #26baff;
+}
 
 img {
   max-height: 35px;
@@ -39,4 +42,13 @@ button.mat-button.not-enabled {
 
 canvas {
   display: none;
+}
+
+.buttons {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.buttons button {
+  border: none;
 }
