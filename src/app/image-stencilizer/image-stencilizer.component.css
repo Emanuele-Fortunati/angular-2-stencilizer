@@ -46,10 +46,15 @@
 }
 
 .image-container img {
-  width: 100%;
+  width: 90%;
   top: 0;
   left: 0;
   display: none;
+}
+@media screen and (min-width: 640px) {
+  .image-container img {
+    width: 100%;
+  }
 }
 
 .image-container img.svg {

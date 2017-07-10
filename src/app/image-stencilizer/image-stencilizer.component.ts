@@ -34,10 +34,10 @@ export class ImageStencilizerComponent implements OnInit {
 
   loader: boolean = false;
 
-  private downloadable: boolean;
-  private settings: boolean = false;
+  downloadable: boolean;
+  settings: boolean = false;
 
-  constructor(private snackBar: MdSnackBar, private sanitizer:DomSanitizer, private dialog: MdDialog, private rd: Renderer2, mdIconRegistry: MdIconRegistry) {
+  constructor(public snackBar: MdSnackBar, public sanitizer:DomSanitizer, public dialog: MdDialog, public rd: Renderer2, public mdIconRegistry: MdIconRegistry) {
 
     mdIconRegistry
       .addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('assets/settings_grey.svg'))
@@ -161,7 +161,7 @@ export class ImageStencilizerComponent implements OnInit {
     }
   }
 
-  private error(message: string) {
+  error(message: string) {
     this.snackBar.open(message, null, {
       duration: 2000,
       extraClasses: ['stencilizer']
@@ -179,7 +179,7 @@ export class ImageStencilizerComponent implements OnInit {
 })
 export class StencilizerSettingsComponent implements OnInit {
 
-  constructor(@Inject(MD_DIALOG_DATA) public data: any, public dialogRef: MdDialogRef<StencilizerSettingsComponent>, mdIconRegistry: MdIconRegistry, private sanitizer:DomSanitizer) {
+  constructor(@Inject(MD_DIALOG_DATA) public data: any, public dialogRef: MdDialogRef<StencilizerSettingsComponent>, mdIconRegistry: MdIconRegistry, sanitizer:DomSanitizer) {
 
     mdIconRegistry
       .addSvgIcon('refresh', sanitizer.bypassSecurityTrustResourceUrl('assets/refresh_blue.svg'))

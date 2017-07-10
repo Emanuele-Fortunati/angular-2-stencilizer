@@ -19,12 +19,12 @@ export class ImageSelectorComponent implements OnInit {
   @ViewChild('fileOpener') fileElem:ElementRef;
 
 
-  private fileReaderEnabled: boolean;
-  private webcamEnabled: boolean;
+  fileReaderEnabled: boolean;
+  webcamEnabled: boolean;
 
-  private fileReader: any;
+  fileReader: any;
 
-  constructor(private snackBar: MdSnackBar, private dialog: MdDialog, mdIconRegistry: MdIconRegistry, private sanitizer:DomSanitizer) {
+  constructor(public snackBar: MdSnackBar, public dialog: MdDialog, public mdIconRegistry: MdIconRegistry, public sanitizer:DomSanitizer) {
 
     mdIconRegistry
       .addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/add_grey.svg'))
@@ -96,7 +96,7 @@ export class ImageSelectorComponent implements OnInit {
 
   }
 
-  private error() {
+  error() {
     this.snackBar.open('This feature is not supported by your browser.', null, {
       duration: 2000,
       extraClasses: ['stencilizer']
@@ -169,7 +169,7 @@ export class ImageSelectorWebcamComponent implements OnInit {
 
   @ViewChild('webcam') webcam:ElementRef;
 
-  constructor(private rd: Renderer2, public dialogRef: MdDialogRef<ImageSelectorWebcamComponent>, mdIconRegistry: MdIconRegistry, private sanitizer:DomSanitizer) {
+  constructor(rd: Renderer2, public dialogRef: MdDialogRef<ImageSelectorWebcamComponent>, mdIconRegistry: MdIconRegistry, sanitizer:DomSanitizer) {
     mdIconRegistry
       .addSvgIcon('camera', sanitizer.bypassSecurityTrustResourceUrl('assets/camera_blue.svg'))
       .addSvgIcon('clear', sanitizer.bypassSecurityTrustResourceUrl('assets/clear_blue.svg'));
@@ -177,8 +177,8 @@ export class ImageSelectorWebcamComponent implements OnInit {
 
   public onSnapshot = new EventEmitter<string>();
 
-  private stream: any;
-  private nossl: boolean = true;
+  stream: any;
+  nossl: boolean = true;
 
   ngOnInit() {
 

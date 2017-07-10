@@ -10,13 +10,13 @@ import { MdDialog, MdDialogRef, MdIconRegistry } from '@angular/material';
 })
 export class InfoComponent implements OnInit {
 
-  constructor(private sanitizer:DomSanitizer, private dialog: MdDialog,mdIconRegistry: MdIconRegistry) {
+  constructor(sanitizer:DomSanitizer, public dialog: MdDialog, mdIconRegistry: MdIconRegistry) {
     mdIconRegistry
       .addSvgIcon('info', sanitizer.bypassSecurityTrustResourceUrl('assets/info_blue.svg'));
   }
 
-  private pulsing: boolean = false;
-  private visible: boolean = false;
+  pulsing: boolean = false;
+  visible: boolean = false;
 
   showInfo() {
     let dialogRef = this.dialog.open(MoreInfoComponent, {

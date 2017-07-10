@@ -9,10 +9,10 @@
   </div>
 
   <div class="buttons-container">
-    <button class="settings" disabled="{{loading || settings? true : false }}" (click)="openSettings()" md-button aria-label="Settings">
+    <button class="settings" disabled="{{loader || settings? true : false }}" (click)="openSettings()" md-button aria-label="Settings">
       <md-icon svgIcon="settings"></md-icon>
     </button>
-    <button class="download" disabled="{{loading || settings? true : false }}" [ngClass]="{'not-downloable': !downloadable}" (click)="download()" md-button aria-label="Download">
+    <button class="download" disabled="{{loader || settings? true : false }}" [ngClass]="{'not-downloable': !downloadable}" (click)="download()" md-button aria-label="Download">
       <md-icon svgIcon="download"></md-icon>
     </button>
   </div>
