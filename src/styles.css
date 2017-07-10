@@ -46,6 +46,9 @@ snack-bar-container.stencilizer simple-snack-bar {
 }
 
 /* dialogs */
+.cdk-overlay-pane.stencilizer {
+  max-width: 640px;
+}
 
 /* md-button pulse animation */
 .mat-button.pulse .mat-button-focus-overlay {

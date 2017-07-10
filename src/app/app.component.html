@@ -11,12 +11,16 @@
   </div>
 
 
-   <div class="image-selector">
-     <stencilizer-image-selector [images]="images" [selected]="selected" (onSelected)="onSelected($event)"></stencilizer-image-selector>
-   </div>
+  <div class="image-selector">
+    <stencilizer-image-selector [images]="images" [selected]="selected" (onSelected)="onSelected($event)"></stencilizer-image-selector>
+  </div>
 
-   <div class="copy ss">
-     <stencilizer-dynamic-copy [selected]="selected" (onSelected)="onCopySelected($event)"></stencilizer-dynamic-copy>
-   </div>
+  <div class="copy ss">
+    <stencilizer-dynamic-copy [selected]="selected" (onSelected)="onCopySelected($event)"></stencilizer-dynamic-copy>
+  </div>
 
+</div>
+
+<div class="info">
+  <stencilizer-info></stencilizer-info>
 </div>
