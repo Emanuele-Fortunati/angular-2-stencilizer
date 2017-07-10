@@ -10,6 +10,11 @@ html, body {
 
   font-family: 'Bellefair', serif;
   letter-spacing: 1px;
+
+  background-image: url('assets/background-vectors.png');
+      background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom right;
 }
 
 a, a:hover, a:visited, a:active {
@@ -42,6 +47,18 @@ snack-bar-container.stencilizer simple-snack-bar {
 
 /* dialogs */
 
+/* md-button pulse animation */
+.mat-button.pulse .mat-button-focus-overlay {
+  background-color: rgba(38, 186, 255, 0.4);
+  animation: pulsate 1.5s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 0.0;
+}
+@keyframes pulsate {
+    0% {transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 0.7;}
+    100% {transform: scale(1.2, 1.2); opacity: 0.0;}
+}
 
 
 /* CSS Loader */
@@ -95,4 +112,3 @@ snack-bar-container.stencilizer simple-snack-bar {
 @-moz-keyframes cssload-spin {
 	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
 }
-

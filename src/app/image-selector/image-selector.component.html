@@ -1,15 +1,15 @@
 <div class="container">
   <div class="images">
-    <button [ngClass]="{'selected': selected == i}" md-button *ngFor="let image of images; index as i">
+    <button [ngClass]="{'selected': selected == i, 'pulse': i == selected + 1 }" md-button *ngFor="let image of images; index as i">
       <img src="{{image}}" (click)="select(image, i)" />
     </button>
   </div>
   <div class="actions">
-    <button [ngClass]="{'not-enabled': !fileReaderEnabled, 'selected': selected == 'add'}" md-button (click)="addImage()" aria-label="Add Image">
+    <button [ngClass]="{'not-enabled': !fileReaderEnabled, 'selected': selected == 'add', 'pulse': selected == 1}" md-button (click)="addImage()" aria-label="Add Image">
       <md-icon class="blue-fill-color" svgIcon="add"></md-icon>
       <input #fileOpener [hidden]="!fileReaderEnabled" class="file" type="file" (change)="fileAdded($event)" accept="image/x-png,image/gif,image/jpeg" />
     </button>
-    <button [ngClass]="{'not-enabled': !webcamEnabled, 'selected': selected == 'webcam'}" md-button (click)="openWebcam()" aria-label="Stream from Webcam">
+    <button [ngClass]="{'not-enabled': !webcamEnabled, 'selected': selected == 'webcam', 'pulse': selected == 'add'}" md-button (click)="openWebcam()" aria-label="Stream from Webcam">
       <md-icon class="blue-fill-color" svgIcon="webcam"></md-icon>
     </button>
   </div>

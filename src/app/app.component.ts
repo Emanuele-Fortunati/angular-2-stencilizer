@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stencilizer';
-  images: Array<string> = ['assets/young-emanuele-fortunati.jpg', 'assets/actual-emanuele-fortunati.jpg'];
-  imageSrc: string = 'assets/young-emanuele-fortunati.jpg';
+  images: Array<string> = ['assets/young-emanuele-fortunati.png', 'assets/actual-emanuele-fortunati.png'];
+  imageSrc: string = 'assets/young-emanuele-fortunati.png';
   selected: any = 0;
 
   onSelected(data: any) {
